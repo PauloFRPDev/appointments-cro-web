@@ -11,7 +11,9 @@ interface AvailableProps {
 export const Container = styled.div`
   height: 100%;
 
-  overflow: hidden;
+  @media (min-width: 650px) {
+    overflow: hidden;
+  }
 `;
 
 export const Content = styled.div`
@@ -23,11 +25,16 @@ export const Content = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 650px) {
+    height: auto;
+  }
 `;
 
 export const MobileNavigation = styled.div`
   @media (max-width: 650px) {
     margin-bottom: 40px;
+    margin-top: 40px;
 
     p {
       color: #fff;
@@ -56,10 +63,28 @@ export const AvailableTimesContainer = styled.div`
   border-radius: 10px;
 
   padding: 40px;
+  margin: 0 40px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  width: 60%;
+
+  h3 {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  @media (max-width: 1000px) {
+    width: 90%;
+
+    margin-bottom: 40px;
+
+    h3 {
+      font-size: 14px;
+    }
+  }
 `;
 
 export const Picker = styled(DatePicker)`

@@ -177,6 +177,22 @@ const Dashboard: React.FC = () => {
             onChange={(date: Date) => setSelectedDate(date)}
           />
 
+          <h3>
+            <strong>Atenção!!</strong>
+            <p>
+              Os agendamentos são feitos para o setor de Atendimento da{' '}
+              <strong>SEDE</strong> do CRO-RJ, para agendamento nas{' '}
+              <strong>DELEGACIAS</strong>, favor entrar em contato através do
+              telefone.
+            </p>
+            <p>
+              Para assuntos relacionados à <strong>cobrança</strong>, favor
+              entrar em contato pelo e-mail:{' '}
+              <strong>secob@cro-rj.org.br</strong> ou pelo WhatsApp:{' '}
+              <strong>(21) 99844-7005</strong>
+            </p>
+          </h3>
+
           <Times>
             {availableTimes.map(availableTime => (
               <AvailableTimes

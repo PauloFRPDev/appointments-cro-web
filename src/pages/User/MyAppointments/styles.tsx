@@ -12,7 +12,9 @@ interface ContainerProps {
 export const Container = styled.div`
   height: 100%;
 
-  overflow: hidden;
+  @media (min-width: 650px) {
+    overflow: hidden;
+  }
 `;
 
 export const Content = styled.div`
