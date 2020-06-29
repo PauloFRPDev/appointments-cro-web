@@ -43,6 +43,7 @@ interface AppointmentsData {
   };
   user: {
     name: string;
+    email: string;
   };
   subject: string;
 }
@@ -163,6 +164,7 @@ const Appointments: React.FC = () => {
                     <DateInformation>
                       <div>
                         <p>Nome: {appointment.user.name}</p>
+                        <p>Email: {appointment.user.email}</p>
                         <p>Dia: {appointment.formattedDay}</p>
                         <p>Hora: {appointment.formattedHour}</p>
                         <p>Assunto: {appointment.subject}</p>
