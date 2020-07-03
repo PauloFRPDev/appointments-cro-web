@@ -1,4 +1,7 @@
 import React, { createContext, useCallback, useState, useContext } from 'react';
+import { decode } from 'jsonwebtoken';
+import { isAfter } from 'date-fns';
+
 import api from '../services/api';
 
 interface AuthState {
@@ -17,6 +20,10 @@ interface AuthContextData {
   signOut(): void;
 }
 
+interface TokenPayload {
+  exp: number;
+}
+
 interface UserData {
   id: string;
   name: string;
@@ -32,6 +39,17 @@ const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>(() => {
     const token = localStorage.getItem('@AppointmentsCro:token');
     const user = localStorage.getItem('@AppointmentsCro:user');
+
+    if (token) {
+      const decoded = decode(token as string);
+
+      const { exp } = decoded as TokenPayload;
+
+      if (!isAfter(exp * 1000, Date.now())) {
+        localStorage.removeItem('@AppointmentsCro:token');
+        localStorage.removeItem('@AppointmentsCro:user');
+      }
+    }
 
     if (token && user) {
       api.defaults.headers.authorization = `Bearer ${token}`;

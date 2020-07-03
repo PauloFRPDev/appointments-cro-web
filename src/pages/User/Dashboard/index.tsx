@@ -49,10 +49,6 @@ const Dashboard: React.FC = () => {
 
   const { user } = useAuth();
 
-  if (!user) {
-    history.push('/');
-  }
-
   if (user.isProvider === 1) {
     history.push('/provider/appointments');
   }
