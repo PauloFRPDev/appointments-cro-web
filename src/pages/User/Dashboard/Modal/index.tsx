@@ -27,15 +27,21 @@ interface Props {
     time: Date;
     parsedTime: string;
   };
+  sector: number;
   isOpen: boolean;
   toggleModalVisible: () => void;
-  handleAddAppointment(time: Date, subject: string): Promise<void>;
+  handleAddAppointment(
+    sector: number,
+    time: Date,
+    subject: string,
+  ): Promise<void>;
 }
 
 Modal.setAppElement('#root');
 
 const ConfirmModal: React.FC<Props> = ({
   time,
+  sector,
   isOpen,
   toggleModalVisible,
   handleAddAppointment,
@@ -69,6 +75,7 @@ const ConfirmModal: React.FC<Props> = ({
             onClick={
               () =>
                 handleAddAppointment(
+                  sector,
                   time.time,
                   String(subjectRef.current?.value),
                 )

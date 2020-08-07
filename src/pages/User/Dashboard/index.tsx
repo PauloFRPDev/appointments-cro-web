@@ -21,6 +21,7 @@ import {
   Content,
   MobileNavigation,
   AvailableTimesContainer,
+  SectorSelect,
   Picker,
   AvailableTimes,
   Times,
@@ -34,6 +35,7 @@ interface AvailableTime {
 }
 
 const Dashboard: React.FC = () => {
+  const [selectedSector, setSelectedSector] = useState(1);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [availableTimes, setAvailableTimes] = useState<AvailableTime[]>([]);
   const [isOpen, setIsOpen] = useState(false);
@@ -67,7 +69,7 @@ const Dashboard: React.FC = () => {
     }
 
     loadAvailableTimes();
-  }, [selectedDate]);
+  }, [selectedDate, selectedSector]);
 
   function handleSelectHour(time: Date): void {
     const parsedDate = format(
@@ -98,7 +100,18 @@ const Dashboard: React.FC = () => {
     });
   }
 
+  function handleSelectSector(e: React.ChangeEvent<HTMLSelectElement>): void {
+    setSelectedSector(Number(e.target.value));
+
+    setSelectedHour({
+      time: new Date(),
+      parsedTime: '',
+    });
+    setHourIsSelected(false);
+  }
+
   async function handleAddAppointment(
+    sector: number,
     date: Date,
     subject: string,
   ): Promise<void> {
@@ -112,6 +125,7 @@ const Dashboard: React.FC = () => {
       });
 
       await api.post('appointments', {
+        sector_id: sector,
         date,
         subject,
       });
@@ -152,6 +166,7 @@ const Dashboard: React.FC = () => {
       <ConfirmModal
         isOpen={isOpen}
         time={selectedHour}
+        sector={selectedSector}
         toggleModalVisible={handleToggleModal}
         handleAddAppointment={handleAddAppointment}
       />
@@ -165,6 +180,11 @@ const Dashboard: React.FC = () => {
         </MobileNavigation>
 
         <AvailableTimesContainer>
+          <SectorSelect name="sectorSelect" onChange={handleSelectSector}>
+            <option value="1">Atendimento</option>
+            <option value="2">Biblioteca</option>
+          </SectorSelect>
+
           <Picker
             locale={pt}
             dateFormat="dd/MM/yyyy"

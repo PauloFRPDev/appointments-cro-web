@@ -87,6 +87,20 @@ export const AvailableTimesContainer = styled.div`
   }
 `;
 
+export const SectorSelect = styled.select`
+  font-size: 20px;
+  border-radius: 4px;
+  background: #f0f0f0;
+  margin-bottom: 16px;
+  border: none;
+  padding: 5px 30px;
+  align-self: center;
+
+  -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
+`;
+
 export const Picker = styled(DatePicker)`
   border: none;
   font-size: 20px;

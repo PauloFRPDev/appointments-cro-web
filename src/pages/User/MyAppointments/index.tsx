@@ -28,6 +28,10 @@ import {
 interface AppointmentsData {
   id: string;
   date: string;
+  sector: {
+    id: number;
+    title: string;
+  };
   formattedDay: string;
   formattedHour: string;
   status: {
@@ -171,6 +175,7 @@ const MyAppointments: React.FC = () => {
                     <div>
                       <p>Dia: {appointment.formattedDay}</p>
                       <p>Hora: {appointment.formattedHour}</p>
+                      <p>Setor: {appointment.sector.title}</p>
                     </div>
                     <p>{appointment.status.title}</p>
                   </DateInformation>
