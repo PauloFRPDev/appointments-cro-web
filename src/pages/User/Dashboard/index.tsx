@@ -60,6 +60,7 @@ const Dashboard: React.FC = () => {
       const response = await api.get('availables', {
         params: {
           date: selectedDate.getTime(),
+          sector_id: selectedSector,
         },
       });
 
