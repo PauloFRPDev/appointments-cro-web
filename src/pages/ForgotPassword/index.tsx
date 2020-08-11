@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import { FiMail } from 'react-icons/fi';
 import * as Yup from 'yup';
 
@@ -22,12 +22,15 @@ interface ForgotPasswordFormData {
 const ForgotPassword: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
+  const [loading, setLoading] = useState(false);
+
   const history = useHistory();
   const { addToast } = useToast();
 
   const handleSubmit = useCallback(
     async (data: ForgotPasswordFormData) => {
       try {
+        setLoading(true);
         formRef.current?.setErrors({});
 
         const schema = Yup.object().shape({
@@ -42,12 +45,15 @@ const ForgotPassword: React.FC = () => {
 
         await api.post(`password/forgot`, data);
 
+        setLoading(false);
+
         history.push('/');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
 
           formRef.current?.setErrors(errors);
+          setLoading(false);
 
           return;
         }
@@ -76,7 +82,9 @@ const ForgotPassword: React.FC = () => {
           <Input name="email" icon={FiMail} placeholder="E-mail" />
 
           <div>
-            <Button type="submit">Recuperar</Button>
+            <Button type="submit" loading={loading} disabled={!!loading}>
+              {loading ? 'Carregando...' : 'Recuperar'}
+            </Button>
             <Link to="/">
               <Button>Voltar</Button>
             </Link>
