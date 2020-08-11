@@ -1,6 +1,8 @@
 import React, { useRef, useCallback, useState } from 'react';
 import { FiMail } from 'react-icons/fi';
 import * as Yup from 'yup';
+import Loader from 'react-loader-spinner';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
@@ -64,6 +66,8 @@ const ForgotPassword: React.FC = () => {
           description:
             'Ocorreu um erro ao solicitar a troca de senha, favor confirmar o e-mail.',
         });
+
+        setLoading(false);
       }
     },
     [addToast, history],
@@ -83,7 +87,7 @@ const ForgotPassword: React.FC = () => {
 
           <div>
             <Button type="submit" loading={loading} disabled={!!loading}>
-              {loading ? 'Carregando...' : 'Recuperar'}
+              {loading ? <Loader type="ThreeDots" color="#fff" /> : 'Recuperar'}
             </Button>
             <Link to="/">
               <Button>Voltar</Button>

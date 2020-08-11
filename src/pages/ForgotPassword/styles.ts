@@ -65,13 +65,23 @@ export const Content = styled.div`
         height: 50px;
 
         @media (max-width: 1235px) {
-          width: 130px;
-          height: 50px;
+          font-size: 15px;
+          width: 115px;
+          height: 40px;
         }
       }
 
       > button {
         margin-right: 15px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+          width: 30px;
+          height: 40px;
+        }
       }
     }
   }

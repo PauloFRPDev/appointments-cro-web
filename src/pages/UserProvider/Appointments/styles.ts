@@ -28,6 +28,10 @@ export const Content = styled.div`
 
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 1240px) {
+    width: 80%;
+  }
 `;
 
 export const FilterContent = styled.div`
@@ -86,6 +90,10 @@ export const AppointmentData = styled.div`
   &:first-child {
     margin-top: 0;
   }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
+  }
 `;
 
 export const DateInformation = styled.div`
@@ -108,6 +116,16 @@ export const DateInformation = styled.div`
     border-right: 1px solid #333;
     padding-right: 10px;
     font-weight: bold;
+
+    @media (max-width: 800px) {
+      border: none;
+      padding: 0;
+      margin: 10px 0;
+    }
+  }
+
+  @media (max-width: 800px) {
+    flex-direction: column;
   }
 `;
 
@@ -142,6 +160,7 @@ export const Error = styled(Tooltip)`
 
 export const EmptyList = styled.div`
   height: 100%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,5 +168,6 @@ export const EmptyList = styled.div`
 
   h2 {
     margin-top: 20px;
+    text-align: center;
   }
 `;

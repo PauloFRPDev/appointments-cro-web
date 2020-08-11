@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { FiSearch, FiTrash2 } from 'react-icons/fi';
+import { FiSearch, FiTrash2, FiFrown } from 'react-icons/fi';
 import { format, parseISO } from 'date-fns';
 import { Link } from 'react-router-dom';
 
@@ -23,6 +23,7 @@ import {
   AppointmentData,
   DateInformation,
   AppointmentStatus,
+  EmptyList,
 } from './styles';
 
 interface AppointmentsData {
@@ -167,29 +168,36 @@ const MyAppointments: React.FC = () => {
             </DateInput>
           </SearchContainer>
 
-          <Scroll>
-            <AppointmentsList>
-              {appointments.map(appointment => (
-                <AppointmentData key={appointment.id}>
-                  <DateInformation>
-                    <div>
-                      <p>Dia: {appointment.formattedDay}</p>
-                      <p>Hora: {appointment.formattedHour}</p>
-                      <p>Setor: {appointment.sector.title}</p>
-                    </div>
-                    <p>{appointment.status.title}</p>
-                  </DateInformation>
-                  <AppointmentStatus>
-                    <FiTrash2
-                      size={20}
-                      color="#990000"
-                      onClick={() => handleDeleteAppointment(appointment.id)}
-                    />
-                  </AppointmentStatus>
-                </AppointmentData>
-              ))}
-            </AppointmentsList>
-          </Scroll>
+          {appointments.length >= 1 ? (
+            <Scroll>
+              <AppointmentsList>
+                {appointments.map(appointment => (
+                  <AppointmentData key={appointment.id}>
+                    <DateInformation>
+                      <div>
+                        <p>Dia: {appointment.formattedDay}</p>
+                        <p>Hora: {appointment.formattedHour}</p>
+                        <p>Setor: {appointment.sector.title}</p>
+                      </div>
+                      <p>{appointment.status.title}</p>
+                    </DateInformation>
+                    <AppointmentStatus>
+                      <FiTrash2
+                        size={20}
+                        color="#990000"
+                        onClick={() => handleDeleteAppointment(appointment.id)}
+                      />
+                    </AppointmentStatus>
+                  </AppointmentData>
+                ))}
+              </AppointmentsList>
+            </Scroll>
+          ) : (
+            <EmptyList>
+              <FiFrown size={50} color="#333" />
+              <h2>Oooops... Não existem agendamentos para mostrar.</h2>
+            </EmptyList>
+          )}
         </AppointmentsContainer>
       </Content>
     </Container>

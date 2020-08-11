@@ -22,6 +22,7 @@
     "react-datepicker": "^3.0.0",
     "react-dom": "^16.13.1",
     "react-icons": "^3.10.0",
+    "react-loader-spinner": "^3.1.14",
     "react-modal": "^3.11.2",
     "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^5.2.0",
@@ -56,6 +57,7 @@
   "devDependencies": {
     "@types/jsonwebtoken": "^8.5.0",
     "@types/react-datepicker": "^2.11.1",
+    "@types/react-loader-spinner": "^3.1.0",
     "@types/react-modal": "^3.10.5",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.0",

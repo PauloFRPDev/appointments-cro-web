@@ -12,7 +12,7 @@ import { useToast } from '../../hooks/toast';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logo from '../../assets/logo.svg';
-// import logoRed from '../../assets/logo-red.svg';
+import logoRed from '../../assets/logo-red.svg';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -86,7 +86,7 @@ const SignIn: React.FC = () => {
       <Content>
         <AnimationContainer>
           <Form ref={formRef} onSubmit={handleSubmit}>
-            <img src={logo} alt="CRO-RJ" />
+            <img src={logoRed} alt="CRO-RJ" />
 
             <h1>Faça seu login</h1>
 

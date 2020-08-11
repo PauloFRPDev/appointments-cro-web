@@ -243,3 +243,15 @@ export const AppointmentStatus = styled.div`
     margin-top: 10px;
   }
 `;
+
+export const EmptyList = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h2 {
+    margin-top: 20px;
+  }
+`;
