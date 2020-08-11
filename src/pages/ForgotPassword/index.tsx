@@ -49,6 +49,13 @@ const ForgotPassword: React.FC = () => {
 
         setLoading(false);
 
+        addToast({
+          type: 'info',
+          title: 'Troca de senha solicitada.',
+          description:
+            'Um e-mail contendo informações para troca de senha foi enviado para você.',
+        });
+
         history.push('/');
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
