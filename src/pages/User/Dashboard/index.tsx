@@ -56,6 +56,12 @@ const Dashboard: React.FC = () => {
   }
 
   useEffect(() => {
+    setSelectedHour({
+      time: new Date(),
+      parsedTime: '',
+    });
+    setHourIsSelected(false);
+
     async function loadAvailableTimes(): Promise<void> {
       const response = await api.get('availables', {
         params: {
