@@ -100,6 +100,8 @@ export const SectorSelect = styled.select`
   padding: 5px 30px;
   align-self: center;
 
+  cursor: pointer;
+
   -webkit-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
   -moz-box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
   box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.3);
