@@ -15,6 +15,7 @@ import { useAuth } from '../../../hooks/auth';
 
 import Header from '../../../components/Header';
 import ConfirmModal from './Modal';
+import Message from './Message';
 
 import {
   Container,
@@ -203,20 +204,11 @@ const Dashboard: React.FC = () => {
 
           <h3>
             <strong>Atenção!!</strong>
-            <p>
-              Os agendamentos são feitos para o setor de Atendimento da{' '}
-              <strong>SEDE</strong> do CRO-RJ, para agendamento nas{' '}
-              <strong>DELEGACIAS</strong>, favor entrar em contato através do
-              telefone.
-            </p>
-            <p>
-              Para assuntos relacionados à <strong>cobrança</strong>, favor
-              entrar em contato pelo e-mail:{' '}
-              <strong>secob@cro-rj.org.br</strong>
-            </p>
+
+            <Message sector={selectedSector} />
           </h3>
 
-          <Times>
+          <Times columns={selectedSector === 3 ? 2 : 4}>
             {availableTimes.map(availableTime => (
               <AvailableTimes
                 enabled={availableTime.available}
