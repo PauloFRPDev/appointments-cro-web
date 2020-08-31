@@ -189,7 +189,8 @@ const Dashboard: React.FC = () => {
         <AvailableTimesContainer>
           <SectorSelect name="sectorSelect" onChange={handleSelectSector}>
             <option value="1">Atendimento</option>
-            <option value="2">Biblioteca</option>
+            <option value="2">Biblioteca - Serviços</option>
+            <option value="3">Biblioteca - Estudo</option>
           </SectorSelect>
 
           <Picker
@@ -211,8 +212,7 @@ const Dashboard: React.FC = () => {
             <p>
               Para assuntos relacionados à <strong>cobrança</strong>, favor
               entrar em contato pelo e-mail:{' '}
-              <strong>secob@cro-rj.org.br</strong> ou pelo WhatsApp:{' '}
-              <strong>(21) 99844-7005</strong>
+              <strong>secob@cro-rj.org.br</strong>
             </p>
           </h3>
 
