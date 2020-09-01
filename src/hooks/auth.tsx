@@ -29,6 +29,7 @@ interface UserData {
   name: string;
   email: string;
   isProvider: number;
+  sector_id: number;
   created_at: Date;
   updated_at: Date;
 }

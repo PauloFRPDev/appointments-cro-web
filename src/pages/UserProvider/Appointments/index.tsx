@@ -46,7 +46,12 @@ interface AppointmentsData {
     email: string;
   };
   subject: string;
+  sector: {
+    id: number;
+    title: string;
+  };
 }
+
 const Appointments: React.FC = () => {
   const { user } = useAuth();
   const history = useHistory();
@@ -67,6 +72,7 @@ const Appointments: React.FC = () => {
       const response = await api.get('provider/appointments', {
         params: {
           date: selectedDate.getTime(),
+          sector: user.sector_id,
         },
       });
 
@@ -83,7 +89,7 @@ const Appointments: React.FC = () => {
     }
 
     loadAppointments();
-  }, [selectedDate, needRefresh]);
+  }, [selectedDate, needRefresh, user.sector_id]);
 
   async function handleDeleteAppointment(id: string): Promise<void> {
     try {
@@ -167,6 +173,7 @@ const Appointments: React.FC = () => {
                         <p>Email: {appointment.user.email}</p>
                         <p>Dia: {appointment.formattedDay}</p>
                         <p>Hora: {appointment.formattedHour}</p>
+                        <p>Setor: {appointment.sector.title}</p>
                         <p>Assunto: {appointment.subject}</p>
                       </div>
 
