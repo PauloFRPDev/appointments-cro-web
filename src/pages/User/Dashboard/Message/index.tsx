@@ -21,7 +21,7 @@ const Message: React.FC<MessageData> = ({ sector }) => {
           Agendamento para Serviços de Levantamento Bibliográfico, Pesquisa
           Bibliográfica e Ficha Catalográfica.
           <br />
-          <strong>Observação:</strong> Todos esses serviços podem ser
+          {/* <strong>Observação:</strong> Todos esses serviços podem ser
           solicitados através do link{' '}
           <strong>
             <a href="http://www.cro-rj.org.br/servicos/biblioteca/">
@@ -29,7 +29,7 @@ const Message: React.FC<MessageData> = ({ sector }) => {
             </a>
           </strong>
           .
-          <br />
+          <br /> */}
           <strong>Dúvidas:</strong> biblioteca@cro-rj.org.br / 3505-7639
         </p>
       );
