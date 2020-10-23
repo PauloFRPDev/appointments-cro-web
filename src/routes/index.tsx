@@ -12,6 +12,7 @@ import Dashboard from '../pages/User/Dashboard';
 import MyAppointments from '../pages/User/MyAppointments';
 
 import Appointments from '../pages/UserProvider/Appointments';
+import ServiceQueue from '../pages/UserProvider/ServiceQueue';
 
 const Routes: React.FC = () => (
   <Switch>
@@ -26,6 +27,12 @@ const Routes: React.FC = () => (
     <Route
       path="/provider/appointments"
       component={Appointments}
+      isPrivate
+      isProvider
+    />
+    <Route
+      path="/provider/service_queue"
+      component={ServiceQueue}
       isPrivate
       isProvider
     />
