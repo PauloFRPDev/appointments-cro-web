@@ -11,6 +11,7 @@ import {
 } from './styles';
 
 interface ServiceQueueData {
+  id: string;
   date: Date;
   employee: string;
   user: string;
@@ -40,13 +41,19 @@ const ServiceQueue: React.FC = () => {
 
         <UsersCalledRow>
           {serviceQueueCalled.length >= 2 &&
-            serviceQueueCalled.map(serviceQueue => (
-              <UserInfo>
-                <h3>{serviceQueue.date}</h3>
-                <h2>{serviceQueue.user}</h2>
-                <h4>Atendente: {serviceQueue.employee}</h4>
-              </UserInfo>
-            ))}
+            serviceQueueCalled.map(serviceQueue => {
+              if (serviceQueueCalled.indexOf(serviceQueue) === 0) {
+                return false;
+              }
+
+              return (
+                <UserInfo key={serviceQueue.id}>
+                  <h3>{serviceQueue.date}</h3>
+                  <h2>{serviceQueue.user}</h2>
+                  <h4>Atendente: {serviceQueue.employee}</h4>
+                </UserInfo>
+              );
+            })}
         </UsersCalledRow>
       </Content>
     </Container>
