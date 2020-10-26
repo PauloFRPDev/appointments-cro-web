@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import api from '../../../services/api';
 
 import {
   Container,
@@ -8,32 +10,43 @@ import {
   UserInfo,
 } from './styles';
 
+interface ServiceQueueData {
+  date: Date;
+  employee: string;
+  user: string;
+}
+
 const ServiceQueue: React.FC = () => {
+  const [serviceQueueCalled, setServiceQueueCalled] = useState<
+    ServiceQueueData[]
+  >([] as ServiceQueueData[]);
+
+  useEffect(() => {
+    api.get('/service_queue').then(response => {
+      setServiceQueueCalled(response.data);
+    });
+  }, []);
+
   return (
     <Container>
       <Content>
-        <LastUserCalled>
-          <h3>09:00</h3>
-          <h1>Paulo Felippe Ribeiro Pinheiro</h1>
-          <h4>Atendente: Paulo Felippe</h4>
-        </LastUserCalled>
+        {serviceQueueCalled[0] && (
+          <LastUserCalled>
+            <h3>{serviceQueueCalled[0].date}</h3>
+            <h1>{serviceQueueCalled[0].user}</h1>
+            <h4>Atendente: {serviceQueueCalled[0].employee}</h4>
+          </LastUserCalled>
+        )}
 
         <UsersCalledRow>
-          <UserInfo>
-            <h3>09:00</h3>
-            <h2>Paulo Felippe Ribeiro Pinheiro</h2>
-            <h4>Atendente: Paulo Felippe</h4>
-          </UserInfo>
-          <UserInfo>
-            <h3>09:00</h3>
-            <h2>Paulo Felippe Ribeiro Pinheiro</h2>
-            <h4>Atendente: Paulo Felippe</h4>
-          </UserInfo>
-          <UserInfo>
-            <h3>09:00</h3>
-            <h2>Paulo Felippe Ribeiro Pinheiro</h2>
-            <h4>Atendente: Paulo Felippe</h4>
-          </UserInfo>
+          {serviceQueueCalled.length >= 2 &&
+            serviceQueueCalled.map(serviceQueue => (
+              <UserInfo>
+                <h3>{serviceQueue.date}</h3>
+                <h2>{serviceQueue.user}</h2>
+                <h4>Atendente: {serviceQueue.employee}</h4>
+              </UserInfo>
+            ))}
         </UsersCalledRow>
       </Content>
     </Container>
