@@ -138,10 +138,18 @@ const Dashboard: React.FC = () => {
         subject,
       });
 
+      const parsedDate = format(
+        parseISO(String(date)),
+        "dd 'de' MMMM 'de' yyyy 'às' HH:mm",
+        {
+          locale: pt,
+        },
+      );
+
       addToast({
         type: 'success',
         title: 'Agendamento realizado com sucesso!',
-        description: `Seu agendamento para o dia ${date} foi realizado com sucesso!`,
+        description: `Seu agendamento para o dia ${parsedDate} foi realizado com sucesso!`,
       });
 
       setIsOpen(!isOpen);

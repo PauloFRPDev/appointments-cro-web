@@ -6,6 +6,7 @@ import {
   FiEyeOff,
   FiUserCheck,
   FiFrown,
+  FiPhoneCall,
 } from 'react-icons/fi';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
@@ -42,6 +43,7 @@ interface AppointmentsData {
     title: string;
   };
   user: {
+    id: string;
     name: string;
     email: string;
   };
@@ -148,6 +150,31 @@ const Appointments: React.FC = () => {
     }
   }
 
+  async function handleCallUser(
+    id: string,
+    appointment_id: string,
+  ): Promise<void> {
+    try {
+      await api.post(`provider/service_queue`, {
+        user_id: id,
+        appointment_id,
+      });
+
+      addToast({
+        type: 'success',
+        title: 'Usuário chamado',
+        description: 'Usuário chamado com sucesso!',
+      });
+    } catch {
+      addToast({
+        type: 'error',
+        title: 'Erro no chamado',
+        description:
+          'Ocorreu um erro ao chamar o profissional, por favor entre em contato com o TI.',
+      });
+    }
+  }
+
   return (
     <>
       <Header />
@@ -180,6 +207,15 @@ const Appointments: React.FC = () => {
                       <p>{appointment.status.title}</p>
                     </DateInformation>
                     <AppointmentStatus>
+                      <Error title="Chamar">
+                        <FiPhoneCall
+                          size={20}
+                          onClick={() => {
+                            handleCallUser(appointment.user.id, appointment.id);
+                          }}
+                        />
+                      </Error>
+
                       <Error title="Em andamento">
                         <FiUserCheck
                           size={20}
