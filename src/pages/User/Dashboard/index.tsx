@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import pt from 'date-fns/locale/pt-BR';
-import { parseISO, format, addHours } from 'date-fns';
+import { parseISO, format } from 'date-fns';
 
 import * as Yup from 'yup';
 
@@ -81,9 +81,7 @@ const Dashboard: React.FC = () => {
 
   function handleSelectHour(time: Date): void {
     const parsedDate = format(
-      parseISO(String(time)).getTimezoneOffset() === 180
-        ? parseISO(String(time))
-        : addHours(parseISO(String(time)), 1),
+      parseISO(String(time)),
       "dd 'de' MMMM 'de' yyyy 'às' HH:mm",
       {
         locale: pt,
@@ -141,9 +139,7 @@ const Dashboard: React.FC = () => {
       });
 
       const parsedDate = format(
-        parseISO(String(date)).getTimezoneOffset() === 180
-          ? parseISO(String(date))
-          : addHours(parseISO(String(date)), 1),
+        parseISO(String(date)),
         "dd 'de' MMMM 'de' yyyy 'às' HH:mm",
         {
           locale: pt,
