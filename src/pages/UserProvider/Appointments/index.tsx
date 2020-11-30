@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fi';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt-BR';
+// import socketIOClient from 'socket.io-client';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -92,6 +93,16 @@ const Appointments: React.FC = () => {
 
     loadAppointments();
   }, [selectedDate, needRefresh, user.sector_id]);
+
+  // useEffect(() => {
+  //   const socket = socketIOClient('http://localhost:3333');
+
+  //   socket.emit('test', 'Olá');
+
+  //   socket.on('test', (msg: string) => {
+  //     console.log(msg);
+  //   });
+  // }, []);
 
   async function handleDeleteAppointment(id: string): Promise<void> {
     try {

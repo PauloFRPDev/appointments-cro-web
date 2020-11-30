@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { format, parseISO } from 'date-fns';
-// import socketIOClient from 'socket.io-client';
 
 import api from '../../../services/api';
 
@@ -24,8 +23,6 @@ const ServiceQueue: React.FC = () => {
   const [serviceQueueCalled, setServiceQueueCalled] = useState<
     ServiceQueueData[]
   >([] as ServiceQueueData[]);
-
-  // const socket = socketIOClient('http://localhost:3333');
 
   useEffect(() => {
     api.get('/provider/service_queue').then(response => {

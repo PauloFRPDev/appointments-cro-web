@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 
 import api from '../../../services/api';
 import getValidationErrors from '../../../utils/getValidationErrors';
+import { holidays } from '../../../config/holiday';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -207,6 +208,7 @@ const Dashboard: React.FC = () => {
             dateFormat="dd/MM/yyyy"
             showPopperArrow={false}
             selected={selectedDate}
+            excludeDates={holidays}
             onChange={(date: Date) => setSelectedDate(date)}
           />
 
