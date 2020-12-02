@@ -6,7 +6,7 @@ const api =
         baseURL: 'http://localhost:3333/api',
       })
     : axios.create({
-        baseURL: 'http://agendamento.cro-rj.org.br/api',
+        baseURL: 'https://agendamento.cro-rj.org.br/api',
       });
 
 export default api;
