@@ -48,3 +48,17 @@ export const libraryVacation = [
   new Date(2021, 0, 12),
   new Date(2021, 0, 13),
 ];
+
+export const mumpsMigration = [
+  new Date(2021, 3, 1),
+  new Date(2021, 3, 2),
+  new Date(2021, 3, 3),
+  new Date(2021, 3, 4),
+  new Date(2021, 3, 5),
+  new Date(2021, 3, 6),
+  new Date(2021, 3, 7),
+  new Date(2021, 3, 8),
+  new Date(2021, 3, 9),
+  new Date(2021, 3, 10),
+  new Date(2021, 3, 11),
+];

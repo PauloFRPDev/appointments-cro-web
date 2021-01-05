@@ -7,7 +7,11 @@ import * as Yup from 'yup';
 
 import api from '../../../services/api';
 import getValidationErrors from '../../../utils/getValidationErrors';
-import { holidays, libraryVacation } from '../../../config/holiday';
+import {
+  holidays,
+  libraryVacation,
+  mumpsMigration,
+} from '../../../config/holiday';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -209,7 +213,9 @@ const Dashboard: React.FC = () => {
             showPopperArrow={false}
             selected={selectedDate}
             excludeDates={
-              selectedSector === 1 ? holidays : holidays.concat(libraryVacation)
+              selectedSector === 1
+                ? holidays.concat(mumpsMigration)
+                : holidays.concat(libraryVacation)
             }
             onChange={(date: Date) => setSelectedDate(date)}
           />
