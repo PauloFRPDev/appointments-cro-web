@@ -39,6 +39,17 @@ export const FilterContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+
+  > div {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+
+    > input {
+      margin-right: 10px;
+    }
+  }
 `;
 
 export const Picker = styled(DatePicker)`
