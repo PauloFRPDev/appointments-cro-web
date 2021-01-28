@@ -60,7 +60,7 @@ const SignUp: React.FC = () => {
         addToast({
           type: 'success',
           title: 'Cadastro realizado!',
-          description: 'Você já pode fazer seu logon no GoBarber',
+          description: 'Você já pode fazer seu logon no sistema de Agendamento',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -71,11 +71,17 @@ const SignUp: React.FC = () => {
           return;
         }
 
-        addToast({
-          type: 'info',
-          title: 'Erro no cadastro',
-          description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
-        });
+        err.response.data.message.includes('E-mail adress already used')
+          ? addToast({
+              type: 'info',
+              title: 'Erro no cadastro',
+              description: 'E-mail já utilizado em outro cadastro',
+            })
+          : addToast({
+              type: 'info',
+              title: 'Erro no cadastro',
+              description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
+            });
       }
     },
     [addToast, history],

@@ -31,6 +31,7 @@ import {
   Picker,
   AvailableTimes,
   Times,
+  Subtitle,
   ConfirmButton,
 } from './styles';
 
@@ -242,6 +243,17 @@ const Dashboard: React.FC = () => {
               </AvailableTimes>
             ))}
           </Times>
+
+          <Subtitle>
+            <div>
+              <div className="first-square" />
+              Horários Disponíveis
+            </div>
+            <div>
+              <div className="second-square" />
+              Horários Indisponíveis
+            </div>
+          </Subtitle>
 
           <ConfirmButton type="button" onClick={handleToggleModal}>
             Agendar

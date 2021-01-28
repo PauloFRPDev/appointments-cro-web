@@ -171,6 +171,56 @@ export const Times = styled.div`
   }
 `;
 
+export const Subtitle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 40px;
+  font-size: 17px;
+
+  > div {
+    display: flex;
+
+    &:first-child {
+      margin-right: 20px;
+
+      @media (max-width: 650px) {
+        margin-right: 0px;
+        margin-bottom: 10px;
+      }
+    }
+
+    > div {
+      width: 30px;
+      border-radius: 4px;
+      margin-right: 10px;
+
+      @media (max-width: 650px) {
+        width: 20px;
+      }
+    }
+
+    > div.first-square {
+      background-color: #990000;
+    }
+
+    > div.second-square {
+      background-color: #990000;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 650px) {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 650px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
 export const ConfirmButton = styled.button`
   border: 0;
   background: none;
