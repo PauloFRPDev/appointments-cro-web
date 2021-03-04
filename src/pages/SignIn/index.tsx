@@ -66,7 +66,7 @@ const SignIn: React.FC = () => {
           type: 'info',
           title: 'Erro na autenticação',
           description:
-            'Ocorreu um erro ao fazer o login, cheque as credenciais',
+            'Ocorreu um erro ao fazer o login, cheque as credenciais.',
         });
       }
     },

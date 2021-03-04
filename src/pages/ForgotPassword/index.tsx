@@ -67,12 +67,19 @@ const ForgotPassword: React.FC = () => {
           return;
         }
 
-        addToast({
-          type: 'info',
-          title: 'Erro ao solicitar troca de senha',
-          description:
-            'Ocorreu um erro ao solicitar a troca de senha, favor confirmar o e-mail.',
-        });
+        err.response.data.message.indexOf('User does not exists') > -1
+          ? addToast({
+              type: 'info',
+              title: 'Erro ao solicitar troca de senha',
+              description:
+                'Usuário não encontrado com o e-mail informado, favor confirmar o e-mail.',
+            })
+          : addToast({
+              type: 'info',
+              title: 'Erro ao solicitar troca de senha',
+              description:
+                'Ocorreu um erro ao solicitar a troca de senha, favor contate o suporte do CRO através do e-mail suporte@cro-rj.org.br.',
+            });
 
         setLoading(false);
       }
