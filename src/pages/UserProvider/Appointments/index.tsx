@@ -62,6 +62,7 @@ const Appointments: React.FC = () => {
   const [needRefresh, setNeedRefresh] = useState(false);
 
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [canceledIsSelected, setCanceledIsSelected] = useState(false);
   const [appointments, setAppointments] = useState<AppointmentsData[]>([]);
 
   const { addToast } = useToast();
@@ -87,12 +88,22 @@ const Appointments: React.FC = () => {
         }),
       );
 
-      setAppointments(formattedAppointments);
+      const filteredCanceledAppointments = formattedAppointments.filter(
+        (appointment: AppointmentsData) => {
+          return appointment.status.title !== 'Cancelado';
+        },
+      );
+
+      setAppointments(
+        canceledIsSelected
+          ? formattedAppointments
+          : filteredCanceledAppointments,
+      );
       setNeedRefresh(false);
     }
 
     loadAppointments();
-  }, [selectedDate, needRefresh, user.sector_id]);
+  }, [selectedDate, needRefresh, user.sector_id, canceledIsSelected]);
 
   // useEffect(() => {
   //   const socket = socketIOClient('http://localhost:3333');
@@ -186,6 +197,10 @@ const Appointments: React.FC = () => {
     }
   }
 
+  function handleCanceledSelected(): void {
+    setCanceledIsSelected(!canceledIsSelected);
+  }
+
   return (
     <>
       <Header />
@@ -198,6 +213,17 @@ const Appointments: React.FC = () => {
               selected={selectedDate}
               onChange={(date: Date) => setSelectedDate(date)}
             />
+
+            <div>
+              <input
+                type="checkbox"
+                id="cb-canceled"
+                name="Canceled"
+                checked={canceledIsSelected}
+                onChange={handleCanceledSelected}
+              />
+              <label htmlFor="cb-canceled">Selecionar cancelados</label>
+            </div>
           </FilterContent>
 
           {appointments.length >= 1 ? (

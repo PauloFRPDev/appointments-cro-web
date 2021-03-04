@@ -43,6 +43,10 @@ const SignUp: React.FC = () => {
             .required('E-mail obrigatório')
             .email('Digite um e-mail válido'),
           password: Yup.string().min(6, 'No mínimo 6 dígitos'),
+          password_confirmation: Yup.string().oneOf(
+            [Yup.ref('password')],
+            'Confirmação incorreta',
+          ),
         });
 
         await schema.validate(data, {
@@ -56,7 +60,7 @@ const SignUp: React.FC = () => {
         addToast({
           type: 'success',
           title: 'Cadastro realizado!',
-          description: 'Você já pode fazer seu logon no GoBarber',
+          description: 'Você já pode fazer seu logon no sistema de Agendamento',
         });
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
@@ -67,11 +71,17 @@ const SignUp: React.FC = () => {
           return;
         }
 
-        addToast({
-          type: 'info',
-          title: 'Erro no cadastro',
-          description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
-        });
+        err.response.data.message.includes('E-mail adress already used')
+          ? addToast({
+              type: 'info',
+              title: 'Erro no cadastro',
+              description: 'E-mail já utilizado em outro cadastro',
+            })
+          : addToast({
+              type: 'info',
+              title: 'Erro no cadastro',
+              description: 'Ocorreu um erro ao fazer cadastro, tente novamente',
+            });
       }
     },
     [addToast, history],
@@ -95,6 +105,13 @@ const SignUp: React.FC = () => {
               icon={FiLock}
               type="password"
               placeholder="Senha"
+            />
+
+            <Input
+              name="password_confirmation"
+              icon={FiLock}
+              type="password"
+              placeholder="Confirmar senha"
             />
 
             <Button type="submit">Cadastrar</Button>
